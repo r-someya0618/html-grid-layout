@@ -14,7 +14,7 @@ img {
 body {
   display: grid; /* グリッドレイアウトモードに設定（この時点で1列 * パーツの数の行のグリッドが設定される） */
   grid-template-columns: 20px 1fr 20px; /* グリッドの列の構造 */
-  grid-template-rows: [head] 100px [title] auto [sub] auto [recent] auto [foot] auto; /* gridの行の構造 */
+  grid-template-rows: [head] 100px [title] auto [sub] auto [recent] auto [foot] 100px; /* gridの行の構造 */
   grid-row-gap: 20px; /* 行間のギャップ（従来のプロパティ） */
   row-gap: 20px; /* 行間のギャップ(新しいプロパティ) */
 }
@@ -22,4 +22,40 @@ body {
 /* パーツの配置 */
 body > * {
   grid-column: 2 / -2; /* body配下の要素を左から2番目のグリッドと右から2番目のグリッドの間で配置する指定 */
+}
+
+/* ヘッダー */
+header {
+  grid-row: head;
+}
+
+/* ナビゲーションメニュー */
+nav {
+  grid-row: head;
+}
+
+/* ヒーロイメージ */
+figure {
+  grid-column: 1/-1;
+  grid-row: title / span 2;
+}
+
+/* タイトル */
+h1 {
+  grid-row: title;
+}
+
+/* サブタイトル */
+p {
+  grid-row: sub;
+}
+
+/* 記事一覧 */
+section {
+  grid-row: recent;
+}
+
+/* フッター */
+footer {
+  grid-row: foot;
 }

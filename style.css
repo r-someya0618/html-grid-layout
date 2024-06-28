@@ -17,6 +17,7 @@ body {
   grid-template-rows: [head] 100px [title] auto [sub] auto [recent] auto [foot] 100px; /* gridの行の構造 */
   grid-row-gap: 20px; /* 行間のギャップ（従来のプロパティ） */
   row-gap: 20px; /* 行間のギャップ(新しいプロパティ) */
+  font-family: sans-serif;
 }
 
 /* パーツの配置 */
@@ -27,11 +28,37 @@ body > * {
 /* ヘッダー */
 header {
   grid-row: head;
+  justify-self: center;
+  align-self: center;
+  font-size: 40px;
+  color: #555d6b;
 }
 
 /* ナビゲーションメニュー */
 nav {
   grid-row: head;
+  justify-self: center;
+  align-self: end;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 20px;
+  column-gap: 20px;
+}
+
+nav a {
+  color: #666;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ef9504;
 }
 
 /* ヒーロイメージ */

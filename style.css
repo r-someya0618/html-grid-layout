@@ -62,19 +62,56 @@ nav a:hover {
 }
 
 /* ヒーロイメージ */
-figure {
+figure.hero {
   grid-column: 1/-1;
   grid-row: title / span 2;
+}
+
+figure.hero img {
+  height: 547px;
+  object-fit: cover;
+  vertical-align: bottom;
+  filter: brightness(70%);
+  z-index: -1;
+  position: relative;
 }
 
 /* タイトル */
 h1 {
   grid-row: title;
+  justify-self: center;
+  align-self: center;
+  color: #fff;
+  font-size: 50px;
+  font-weight: normal;
+  line-height: 1.2;
+  text-shadow: 0 0 5px #444;
+  text-align: center;
 }
 
 /* サブタイトル */
 p {
   grid-row: sub;
+  text-align: center;
+}
+
+p a {
+  color: #fff;
+  text-decoration: none;
+  border: solid 1px #fff;
+  padding: 10px 40px;
+  display: inline-block;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: rgba(85, 93, 107, 0.5);
+}
+
+p a:hover {
+  background-color: #ef9504;
+}
+
+p img {
+  width: 250px;
 }
 
 /* 記事一覧 */

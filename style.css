@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+/* テキストの自動拡大を無効化 */
+body {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
 /* 基本設定 */
 * {
   margin: 0;
@@ -25,6 +31,79 @@ body > * {
   grid-column: 2 / -2; /* body配下の要素を左から2番目のグリッドと右から2番目のグリッドの間で配置する指定 */
 }
 
+/* 記事ページ */
+.post {
+  grid-template-rows: [head]100px [kiji]auto[submenu]auto[foot]100px;
+}
+
+/* 記事ページ：記事 */
+.post article {
+  grid-row: kiji;
+}
+
+.post article > * {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display: block;
+}
+
+.post article p {
+  line-height: 2;
+}
+
+/* 記事ページ：バー */
+.post::before {
+  content: '';
+  background: #eee;
+  height: 2px;
+  grid-column: 1 / -1;
+  grid-row: kiji;
+}
+
+/* 記事ページ：時計アイコン */
+.fa-clock {
+  color: #888;
+  margin-right: 5px;
+}
+
+/* 記事ページ：サブメニュー */
+.post div {
+  grid-row: submenu;
+}
+
+aside {
+  border: solid 1px #ddd;
+  padding: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+aside h2 {
+  border-bottom: solid 1px #ddd;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  color: #888;
+  font-weight: normal;
+  font-family: 'Raleway', sans-serif;
+}
+
+aside p {
+  font-size: 14px;
+}
+
+aside:first-child img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+aside ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
 /* ヘッダー */
 header {
   grid-row: head;
@@ -33,6 +112,11 @@ header {
   font-size: 40px;
   color: #555d6b;
   font-family: 'Raleway', sans-serif;
+}
+
+header a {
+  color: inherit;
+  text-decoration: none;
 }
 
 /* ナビゲーションメニュー */
@@ -78,7 +162,7 @@ figure.hero img {
 }
 
 /* タイトル */
-h1 {
+.top h1 {
   grid-row: title;
   justify-self: center;
   align-self: center;
@@ -92,12 +176,12 @@ h1 {
 }
 
 /* サブタイトル */
-p {
+.top p {
   grid-row: sub;
   text-align: center;
 }
 
-p a {
+.top p a {
   color: #fff;
   text-decoration: none;
   border: solid 1px #fff;
@@ -108,16 +192,17 @@ p a {
   background-color: rgba(85, 93, 107, 0.5);
 }
 
-p a:hover {
+.top p a:hover {
   background-color: #ef9504;
 }
 
-p img {
+.top p img {
   width: 250px;
 }
 
-/* 記事一覧 */
-section {
+/* 記事一覧 & 記事ページの注目記事メニュー */
+section,
+aside ul {
   grid-row: recent;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -125,16 +210,19 @@ section {
   gap: 20px 10px;
 }
 
-section a {
+section a,
+aside a {
   color: #000;
   text-decoration: none;
 }
 
-section a:hover {
+section a:hover,
+aside a:hover {
   text-decoration: underline;
 }
 
-section h3 {
+section h3,
+aside h3 {
   font-size: 14px;
 }
 
@@ -162,4 +250,85 @@ body::after {
   grid-column: 1/-1;
   grid-row: foot;
   z-index: -1;
+}
+
+/* === PC版の設定 === */
+@media (min-width: 768px) {
+  /* PC版：ページ全体の設定 */
+  body {
+    grid-template-columns: 0.2fr repeat(6, 1fr) 0.2fr;
+    grid-column-gap: 5%;
+    column-gap: 5%;
+    grid-template-rows: [head] 100px [title sub] auto [recent]auto [foot]100%;
+  }
+
+  /* PC版：ヒーローイメージ */
+  figure.hero {
+    grid-row: title;
+    margin-top: -20px;
+  }
+
+  /* PC版：タイトル */
+  .top h1 {
+    grid-column: 2 / span 3;
+    max-width: 460px;
+  }
+
+  /* PC版：サブタイトル */
+  .top p {
+    grid-column: 5 / span 3;
+    align-self: center;
+  }
+
+  .top p img {
+    width: 80%;
+    max-width: 460px;
+  }
+
+  /* PC版：ヘッダー */
+  header {
+    justify-self: start;
+    align-self: center;
+  }
+
+  /* PC版：ナビゲーションメニュー */
+  nav {
+    justify-self: end;
+    align-self: center;
+  }
+
+  /* PC版：記事一覧 */
+  section {
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 20px;
+    column-gap: 20px;
+  }
+
+  /* PC版：記事ページ */
+  .post {
+    grid-template-rows: [head]100px [kiji submenu] auto [foot] 100px;
+  }
+
+  /* PC版：記事ページ：記事 */
+  .post article {
+    grid-column: 2 / span 4;
+  }
+
+  .post article h1 {
+    font-size: 42px;
+  }
+
+  .post article p {
+    font-size: 18px;
+  }
+
+  /* PC版：記事ページ：サブメニュー */
+  .post div {
+    grid-column: 6 / span 2;
+  }
+
+  /* PC版：記事ページ：バー */
+  .post::before {
+    margin-top: -20px;
+  }
 }

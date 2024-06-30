@@ -273,6 +273,29 @@ th {
 td {
   background-color: #e8eef9;
 }
+
+/* お問い合わせページ */
+form p {
+  margin-bottom: 20px;
+}
+
+input,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+textarea {
+  height: 120px;
+}
+
+input[type='submit'] {
+  background-color: #ffaa00;
+  border: none;
+  appearance: none;
+}
+
 /* === PC版の設定 === */
 @media (min-width: 768px) {
   /* PC版：ページ全体の設定 */
@@ -351,5 +374,9 @@ td {
   /* PC版：記事ページ：バー */
   .post::before {
     margin-top: -20px;
+  }
+  /* PC版：お問い合わせページ */
+  input[type='submit'] {
+    width: 250px;
   }
 }

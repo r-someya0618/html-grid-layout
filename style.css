@@ -252,6 +252,27 @@ body::after {
   z-index: -1;
 }
 
+/* サイトについてページ */
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: solid 1px #ccc;
+  padding: 20px;
+}
+
+th {
+  width: 4em;
+  text-align: left;
+  background-color: #555d6b;
+  color: #fff;
+}
+
+td {
+  background-color: #e8eef9;
+}
 /* === PC版の設定 === */
 @media (min-width: 768px) {
   /* PC版：ページ全体の設定 */
